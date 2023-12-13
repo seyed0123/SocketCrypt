@@ -21,11 +21,7 @@ In essence, SocketCrypt is a powerful tool for developers looking to implement s
 ## Installation
 To use SocketCrypt in your project, add the following to your pom.xml file:
 ```
-<dependency>
-   <groupId>org.example</groupId>
-   <artifactId>SocketCrypt</artifactId>
-   <version>1.0.0</version>
-</dependency>
+
 ```
 ## Usage
 ### SocketCryptClient
