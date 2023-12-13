@@ -11,7 +11,6 @@ public class MainServer {
             Socket clientSocket = serverSocket.accept();
             SocketCryptServer s = new SocketCryptServer(clientSocket);
             System.out.println("Client connected." + clientSocket.getLocalSocketAddress());
-
             s.getMessage();
             s.sendMessage("hi encrypted client");
         } catch (Exception e) {
