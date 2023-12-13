@@ -19,14 +19,13 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.Base64;
 
 public class SocketCryptClient extends Socket{
-    public static Socket socket;
-    public static ObjectOutputStream objOut;
-    public static ObjectInputStream objIn;
-    public static Cipher cipherEncrypt;
-    public static Cipher cipherDecrypt;
-    public static Gson gson;
-    public static PrintWriter output;
-    public static BufferedReader input;
+    public Socket socket;
+    private final ObjectOutputStream objOut;
+    private Cipher cipherEncrypt;
+    private Cipher cipherDecrypt;
+    private final Gson gson;
+    private final PrintWriter output;
+    private final BufferedReader input;
 
     public SocketCryptClient(String host, int port) throws IOException {
         super(host, port);
@@ -34,7 +33,6 @@ public class SocketCryptClient extends Socket{
         input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         output = new PrintWriter(socket.getOutputStream(), true);
         objOut = new ObjectOutputStream(socket.getOutputStream());
-        objIn = new ObjectInputStream(socket.getInputStream());
         gson = new Gson();
         startCom();
     }
@@ -70,7 +68,7 @@ public class SocketCryptClient extends Socket{
         }
     }
 
-    public static void startCom()
+    private void startCom()
     {
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");

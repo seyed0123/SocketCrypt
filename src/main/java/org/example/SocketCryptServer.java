@@ -12,7 +12,7 @@ import java.util.Base64;
 
 public class SocketCryptServer{
 
-    public static Socket socket;
+    public Socket socket;
     private Cipher cipherEncrypt;
     private Cipher cipherDecrypt;
     private Gson gson;
@@ -22,13 +22,11 @@ public class SocketCryptServer{
 
     private ObjectInputStream objIn;
 
-    public static ObjectOutputStream objOut;
 
     public SocketCryptServer(Socket socket) {
         this.socket = socket;
         try {
             objIn = new ObjectInputStream(socket.getInputStream());
-            objOut = new ObjectOutputStream(socket.getOutputStream());
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(socket.getOutputStream(), true);
             gson = new Gson();
