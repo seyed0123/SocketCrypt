@@ -32,29 +32,32 @@ public class SocketCryptServer{
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(socket.getOutputStream(), true);
             gson = new Gson();
+            setKeys();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void sendMessage(String message)
+    public void sendMessage(String message)
     {
         try {
             byte[] encrypt = cipherEncrypt.doFinal(message.getBytes());
             String base64Data = Base64.getEncoder().encodeToString(encrypt);
             output.println(gson.toJson(base64Data));
+            System.out.println("The actual string that was sent: '"+base64Data+"'\nthe String that we sent: "+message);
         } catch (IllegalBlockSizeException e) {
             throw new RuntimeException(e);
         } catch (BadPaddingException e) {
             throw new RuntimeException(e);
         }
     }
-    private String getMessage()
+    public String getMessage()
     {
         try {
             String base64 = gson.fromJson(input.readLine(),String.class);
             byte[] decodedData = Base64.getDecoder().decode(base64);
             byte[] decrypted = cipherDecrypt.doFinal(decodedData);
+            System.out.println("The actual string that was received: '"+base64+"'\nThe message from client: "+new String(decrypted));
             return new String(decrypted);
         } catch (IOException e) {
             e.printStackTrace();
