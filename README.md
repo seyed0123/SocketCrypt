@@ -1,4 +1,5 @@
 # SocketCrypt
+![](shots/socket.jpg)
 SocketCrypt is a comprehensive Java library designed to facilitate secure communication over sockets. It provides a set of classes that enable developers to encrypt and decrypt data transmitted over these sockets. The library leverages the robust security of the RSA algorithm for secure key exchange, ensuring that the keys used for data encryption and decryption are securely exchanged between the communicating parties.
 
 For the actual data encryption and decryption, SocketCrypt employs the Advanced Encryption Standard (AES). AES is a symmetric encryption algorithm that is widely recognized for its high level of security. It is used to encrypt the data before it is sent over the socket, and then decrypt it upon receipt. This ensures that even if the data is intercepted during transmission, it remains unreadable without the correct decryption key.
